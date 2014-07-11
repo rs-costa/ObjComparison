@@ -3,6 +3,7 @@ FBAcomparison
 FBAs with several objective functions for different E.coli models and datasets.
 
 I. PREQUISITES
+
 -MATLAB 2012b with Global Optimization Toolbox and Parallel Computing.
 
 -Cobra toolbox 2.0.5 (GLPK+libSBML): http://opencobra.sourceforge.net/openCOBRA
