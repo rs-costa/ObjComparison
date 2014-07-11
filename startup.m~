@@ -1,4 +1,0 @@
-addpath('/kdbio/home/hoangnguyen/local/lib');
-addpath('/kdbio/home/hoangnguyen/source/glpkmex');
-addpath(genpath('/kdbio/home/hoangnguyen/source/cobra'));
-initCobraToolbox;
