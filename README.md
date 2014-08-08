@@ -1,6 +1,6 @@
-FBAcomparison
+COMPObj
 =============
-FBAs with several objective functions for different E.coli models and datasets.
+Systematic comparison of several objective functions for different E. coli models and datasets.
 
 I. PREQUISITES
 
