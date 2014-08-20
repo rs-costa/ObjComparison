@@ -1,50 +1,46 @@
 function FBAsolution=maxBMperFlux2(glob,model,netcode)
 % Maximization of biomass yield per flux unit
 [nMets,nRxns]=size(model.S);
-% x0=model.lb+(model.ub-model.lb).*rand(length(model.rxns),1)
 if netcode==1
     obj=@(x)(-x(13)/sum(x.^2));
-    nOpt=100;
+%     md0=changeObjective(model,'Biomass_Ecoli_core_w_GAM');
+%     load('data/gs1_initPoints.mat');
 elseif netcode==2
     obj=@(x)(-x(98)/sum(x.^2));
-    nOpt=100;
+%     md0=changeObjective(model,'biomass');
+%     load('data/gs2_initPoints.mat');
 elseif netcode==3
     obj=@(x)(-x(1005)/sum(x.^2));
-    nOpt=1000;
+%     md0=changeObjective(model,'Ec_biomass_iAF1260_core_59p81M');
+%     load('data/gs3_initPoints.mat');
 end
 
 A=[model.S(model.csense=='L',:);-model.S(model.csense=='G',:)];
 b=[model.b(model.csense=='L',:);-model.b(model.csense=='G',:)];
 Aeq=model.S(model.csense=='E',:);
 beq=model.b(model.csense=='E',:);
+%%Play with MultiStart or GlobalSearch. set CustomStartPointSet
+% sol0=optimizeCbModel(md0,'max','one');
+% if sol0.stat ~=1
+	x0=generateRand(model,1,netcode,1);
+	x0=x0';
+% else
+% 	x0=sol0.x;
+% end
+gs_pts=generateRand(model,glob.ite,netcode,1);
 
-initArgs{1}='max';
-initArgs{2}=.5;
-
-xx=generateRand(model,nOpt,netcode);
-
-allObjValues=zeros(nOpt,1);
-allSolutions=zeros(nRxns,nOpt);
-allStats=zeros(nOpt,1);
 opt=optimset('Algorithm','interior-point','Display','none');
+problem=createOptimProblem('fmincon','objective',obj,'x0',x0,'Aeq',Aeq,'Aineq',A,'beq',beq,'bineq',b,'lb',model.lb,'ub',model.ub,'options',opt);
+ms=MultiStart('UseParallel','always');
 
-parfor i=1:nOpt
-    %x0=randomObjFBASol(model,initArgs);
-    %if isempty(x0)
-    %    continue;
-    %end
-    x0=xx(:,i);
-    [x,f,stat]=fmincon(obj,x0,A,b,Aeq,beq,model.lb,model.ub,[],opt);
-    [x,f,stat]=fmincon(obj,x,A,b,Aeq,beq,model.lb,model.ub,[],opt);
-    allStats(i)=stat;
-    allObjValues(i)=-f;
-    allSolutions(:,i)=x(1:nRxns);
+% gs_pts=[x0';gs_pts];
+tpoints=CustomStartPointSet(gs_pts);
+[sol,fval,exitflag,output]=run(ms,problem,tpoints);
 
-end
-
-[FBAsolution.f, idx]=max(allObjValues);
-FBAsolution.x=allSolutions(:,idx);
-FBAsolution.exitflag=allStats(idx);
+FBAsolution.f=-fval;
+FBAsolution.x=sol;
+FBAsolution.exitflag=exitflag;
+FBAsolution.output=output;
 
 if FBAsolution.exitflag<0
     FBAsolution.minE=-1;
@@ -52,5 +48,5 @@ else
     FBAsolution.minE=eclDistance(glob,FBAsolution.x)/100;
 end
 FBAsolution.maxE=FBAsolution.minE;
-
+%FBAsolution.midE=FBAsolution.minE;
 end

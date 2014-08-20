@@ -1,16 +1,16 @@
-function FBAsolution=maxATPperFlux(glob,model,netcode)
-% Maximization of ATP yield per flux unit
-atpm={'ATPM' 'maint' 'ATPM'};
-atpRxns=atpm{netcode};
-model = changeObjective(model,atpRxns);
+function FBAsolution=maxBMperFlux(glob,model,netcode)
+% Maximization of biomass yield per flux unit
+bm={'Biomass_Ecoli_core_w_GAM' 'biomass' 'Ec_biomass_iAF1260_core_59p81M'};
+bmRxns=bm{netcode};
+model = changeObjective(model,bmRxns);
 fba= optimizeCbModel(model,'min');                
-atpMin= fba.f;
+bmMin= fba.f;
 fba= optimizeCbModel(model,'max');                
-atpMax= fba.f;
+bmMax= fba.f;
 
 sol0=optimizeCbModel(model,'max','one');
 if sol0.stat ~=1
-	x0=generateRand(model,1,netcode,2);
+	x0=generateRand(model,1,netcode,1);
 	x0=x0';
 else
 	x0=sol0.x;
@@ -24,8 +24,8 @@ f=zeros(nVar,1);
 
 xValues=[]; objValues=[]; flagValues=[];
 parfor i=0:nStep
-    tmp=atpMin+i*(atpMax-atpMin)/nStep;
-    md=changeRxnBounds(model,atpRxns,tmp,'b');
+    tmp=bmMin+i*(bmMax-bmMin)/nStep;
+    md=changeRxnBounds(model,bmRxns,tmp,'b');
    
     A=[md.S(md.csense=='L',:);-md.S(md.csense=='G',:)];
     b=[md.b(md.csense=='L',:);-md.b(md.csense=='G',:)];
@@ -40,7 +40,7 @@ parfor i=0:nStep
     end
 
 end
-% fprintf('%.5f =============> %.5f\n',atpMin,atpMax);
+% fprintf('%.5f =============> %.5f\n',bmMin,bmMax);
 [val, idx]=max(objValues);
 FBAsolution.f=val;
 FBAsolution.x=xValues(:,idx);
