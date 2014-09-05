@@ -24,17 +24,17 @@ II. CONTENT
 
 -./data/Expdata_ec_core_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Core model.
 
--./dataExpdata_schuetz_core_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Schuetz model.
+-./dataExpdata_ec_schuetz_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Schuetz model. Not in use for the article.
+
+-./dataExpdata_ec_iaf1260_model.mat: experimental datasets containing mapped fluxes values from different data sources to the iAF1260 genome-scale model.
 
 3) Models:
 
--./models/ec_core_model.xml: SBML format for the Core model.
-
 -./models/ec_core_model.mat: Matlab format for the Core model.
 
--./models/ec_schuetz_model.xml: SBML format for the Schuetz model.
+-./models/ec_schuetz_model.mat: Matlab format for the Schuetz model. Not in use for the article.
 
--./models/ec_schuetz_model.mat: Matlab format for the Schuetz model.
+-./models/ec_iaf1260_model.mat: Matlab format for the Genome-scale model.
 
 4) Additional files
 
