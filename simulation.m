@@ -1,17 +1,18 @@
 
 function simulation(md,env,task)
     gr_start=1;
-
-    if md==3
-        gr_end=6;
-        envname={'ishii0.1C' 'ishii0.4C' 'ishii0.7C' 'holm0.67B' 'perrenoud0.65B' 'emmerling0.09N'};
-        dilution=[0.1 0.4 0.7 0.67 0.65 0.09];
-    else       
-        gr_end=12;
-        envname={'nanchen0.09C' 'nanchen0.4C' 'emmerling0.09N' 'emmerling0.09C' 'emmerling0.4C' 'yang0.1C' 'yang0.55C' 'ishii0.1C' 'ishii0.4C' 'ishii0.7C' 'perrenoud0.65B' 'holm0.67B'};
-        dilution=[0.09 0.4 0.09 0.09 0.4 0.1 0.55 0.1 0.4 0.7 0.65 0.67];
-    end
-    
+%     if md==0 
+%         gr_end=6;
+%         envname={'ishii0.1C' 'ishii0.4C' 'ishii0.7C' 'holm0.67B' 'perrenoud0.65B' 'emmerling0.09N'};
+%         dilution=[0.1 0.4 0.7 0.67 0.65 0.09];
+%     else       
+%         gr_end=12;
+%         envname={'nanchen0.09C' 'nanchen0.4C' 'emmerling0.09N' 'emmerling0.09C' 'emmerling0.4C' 'yang0.1C' 'yang0.55C' 'ishii0.1C' 'ishii0.4C' 'ishii0.7C' 'perrenoud0.65B' 'holm0.67B'};
+%         dilution=[0.09 0.4 0.09 0.09 0.4 0.1 0.55 0.1 0.4 0.7 0.65 0.67];
+%     end
+    gr_end=12;
+    envname={'nanchen0.09C' 'nanchen0.4C' 'emmerling0.09N' 'emmerling0.09C' 'emmerling0.4C' 'yang0.1C' 'yang0.55C' 'ishii0.1C' 'ishii0.4C' 'ishii0.7C' 'perrenoud0.65B' 'holm0.67B'};
+    dilution=[0.09 0.4 0.09 0.09 0.4 0.1 0.55 0.1 0.4 0.7 0.65 0.67];
     if ~exist('md','var')
         md=1;
     end
@@ -47,8 +48,8 @@ function simulation(md,env,task)
     mdname={'ec_core_model' 'ec_schuetz_model' 'ec_iaf1260_model'};
     
     taskname={'glucose+coarse_grained' 'pairsOfConstraint' 'allLinearOFs' 'scatterPlot' 'biomass+X' 'biomass+ATP+X' 'biomass+minFlux+X' 'biomass+ATP+minFlux'};    
-    load_model=strcat('models/',mdname{md},'.mat');  
-    load_data=strcat('data/Expdata_',mdname{md},'.mat');
+    load_model=strcat('models/',mdname{md});  
+    load_data=strcat('data/',mdname{md},'.mat');
     
     glob.ite=100;
     tit={'max BM','max ATP','min Flux','max BM/flux','max ATP/flux','min Rd','min ATPprod','max ATPprod'};
