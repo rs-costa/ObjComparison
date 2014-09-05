@@ -34,7 +34,7 @@ II. CONTENT
 
 -./models/ec_core_model.mat: Matlab format for the Core model [2].
 
--./models/ec_schuetz_model.mat: Matlab format for the Schuetz model. Not in use for the article [3].
+-./models/ec_schuetz_model.mat: Matlab format for the Schuetz model [3]. Not in use for the article.
 
 -./models/ec_iaf1260_model.mat: Matlab format for the Genome-scale model [4].
 
