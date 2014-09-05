@@ -49,7 +49,7 @@ function simulation(md,env,task)
     
     taskname={'glucose+coarse_grained' 'pairsOfConstraint' 'allLinearOFs' 'scatterPlot' 'biomass+X' 'biomass+ATP+X' 'biomass+minFlux+X' 'biomass+ATP+minFlux'};    
     load_model=strcat('models/',mdname{md});  
-    load_data=strcat('data/',mdname{md},'.mat');
+    load_data=strcat('data/Expdata_',mdname{md},'.mat');
     
     glob.ite=100;
     tit={'max BM','max ATP','min Flux','max BM/flux','max ATP/flux','min Rd','min ATPprod','max ATPprod'};
@@ -59,7 +59,7 @@ function simulation(md,env,task)
 %     log=zeros(30,4*(noOfObj+1)); % +growth rate (biomass), EX_glc, EX_o2
  
     for gr=gr_start:gr_end
-        savedir=strcat('conf-Copy/',mdname{md},'/',envname{gr});
+        savedir=strcat('Results/',mdname{md},'/',envname{gr});
         mkdir(savedir);
         bmrate=dilution(gr);
         %%% Load model and experimental data
@@ -427,7 +427,7 @@ function simulation(md,env,task)
 
             [solution,id]=sort(solution);
             tit=tit(id);
-	     elseif task==8
+	elseif task==8
             bm={'Biomass_Ecoli_core_w_GAM' 'biomass' 'Ec_biomass_iAF1260_core_59p81M'};
             atpm={'ATPM' 'maint' 'ATPM'};
             % range of biomass flux
