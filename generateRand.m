@@ -1,4 +1,4 @@
-function x0=generateRand(model,numpoint,netcode)
+function xx=generateRand(model,numpoint,netcode,funcode)
     if netcode==1 || netcode==3
         % No more additional constraints
         model=changeRxnBounds(model,'ATPM',0,'l');
@@ -9,20 +9,48 @@ function x0=generateRand(model,numpoint,netcode)
 
     end
     [nMets,nRxns]=size(model.S);
-    x0=zeros(nRxns,numpoint);
-    for i=1:nRxns
-        model.c=zeros(nRxns,1);
-        model.c(i)=1;
-        max_sol=optimizeCbModel(model,'max');
-        min_sol=optimizeCbModel(model,'min');
-        min_X=model.ub(i);
-        max_X=model.lb(i);
-        if max_sol.stat~=1
-            max_X=max_sol.f;
-        end
-        if min_sol.stat~=1
-            min_X=min_sol.f;
-        end
-        x0(i,:)=min_X+(max_X-min_X)*rand(numpoint,1);
+    xx=zeros(numpoint,nRxns);
+    %% Old implementation (without option funcode)
+% 	initArgs{1}='max';
+% 	initArgs{2}=.5;
+% 	parfor i=1:numpoint
+% 		xx(i,:)=randomObjFBASol(model,initArgs);	
+% 	end		
+
+    %% New implementation from here
+    if funcode==1 % biomass per flux
+        bm={'Biomass_Ecoli_core_w_GAM' 'biomass' 'Ec_biomass_iAF1260_core_59p81M'};
+        rxns=bm{netcode};
+    elseif funcode ==2 %atp per flux
+        atpm={'ATPM' 'maint' 'ATPM'};
+        rxns=atpm{netcode};
     end
+    
+    nVar=nRxns; % funcode involve...
+    
+    H=sparse(1:nRxns,1:nRxns,ones(nRxns,1),nVar,nVar);
+    opt=optimset('Algorithm','interior-point-convex','Display','none');
+    f=zeros(nVar,1);
+    
+    model = changeObjective(model,rxns);
+    fba= optimizeCbModel(model,'min');                
+    rMin= fba.f;
+    fba= optimizeCbModel(model,'max');                
+    rMax= fba.f;
+    x0=fba.x;
+    parfor i=1:numpoint
+        tmp=rMin+i*(rMax-rMin)/numpoint;
+        md=changeRxnBounds(model,rxns,tmp,'b');
+
+        A=[md.S(md.csense=='L',:);-md.S(md.csense=='G',:)];
+        b=[md.b(md.csense=='L',:);-md.b(md.csense=='G',:)];
+        Aeq=md.S(md.csense=='E',:);
+        beq=md.b(md.csense=='E',:);
+        [sol,fval,exitflag]=quadprog(H,f,A,b,Aeq,beq,md.lb,md.ub,x0,opt);
+        if exitflag > 0
+            xx(i,:)= sol;
+        end
+
+    end
+
 end
