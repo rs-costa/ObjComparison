@@ -3,9 +3,8 @@
 clear;
 clc;
 s=matlabpool('size');
-ncpu=8; %number of CPU for parallel running
 if s==0
-	matlabpool open ncpu;
+	matlabpool open 2; % 2 cpus used in parallel
 end
 pctRunOnAll warning('off','all');
 % for task=[1,2,4,8]
