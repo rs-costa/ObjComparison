@@ -1,3 +1,9 @@
+Experimental datasets, metabolic models and MATLAB scripts from:
+
+R S Costa, S Nguyen, A Hartman, S Vinga "Exploring the cellular objective in flux balance constraint-based models", Lecture Notes in Computer Science: 8859, 211-224 (2014).
+
+
+
 ObjComparison
 =============
 Systematic comparison of several objective functions for different E. coli models and datasets.
@@ -20,7 +26,7 @@ II. CONTENT
 
 -max/min*.m: objective functions.
 
--pareto*.m: pareto optimization with 2 or 3 objective functions. The algorithm being applied is epsilon-constraint[1].
+-pareto*.m: pareto optimization with 2 or 3 objective functions. The algorithm being applied is epsilon-constraint [1]. Not used in the article.
 
 2) Data:
 
@@ -34,7 +40,7 @@ II. CONTENT
 
 -./models/ec_core_model.mat: Matlab format for the Core model [2].
 
--./models/ec_schuetz_model.mat: Matlab format for the Schuetz model [3]. Not in use for the article.
+-./models/ec_schuetz_model.mat: Matlab format for the Schuetz model [3]. Not used in the article.
 
 -./models/ec_iaf1260_model.mat: Matlab format for the Genome-scale model [4].
 
