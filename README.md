@@ -32,7 +32,7 @@ II. CONTENT
 
 -./data/Expdata_ec_core_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Core model.
 
--./dataExpdata_ec_schuetz_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Schuetz model. Not in use for the article.
+-./dataExpdata_ec_schuetz_model.mat: experimental datasets containing mapped fluxes values from different data sources to the Schuetz model. Not used in the article.
 
 -./dataExpdata_ec_iaf1260_model.mat: experimental datasets containing mapped fluxes values from different data sources to the iAF1260 genome-scale model.
 
