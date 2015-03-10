@@ -1,9 +1,10 @@
 % Exploring the cellular objective in flux balance constraint-based models.
+
 % Author: Rafael Costa
-% Affiliation: Instituto de Engenharia de Sistemas e Computadores, Investigacão e Desenvolvimento (INESC-ID)
+% Affiliation: Instituto de Engenharia de Sistemas e Computadores, Investigacão e Desenvolvimento (INESC-ID), Lisboa
 % and
 % Center for Intelligent Systems, LAETA, IDMEC, IST, University of Lisbon 
-% Author: Son Nguyen
+% Author: Nguyen Hoang Son
 
 
 function solution=allObjCall(glob,model,netcode,taskcode)
