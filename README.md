@@ -1,4 +1,4 @@
-Experimental datasets, metabolic models and MATLAB scripts from:
+Experimental datasets, metabolic models and MATLAB scripts from the following manuscript:
 
 R S Costa, S Nguyen, A Hartman, S Vinga "Exploring the cellular objective in flux balance constraint-based models", Lecture Notes in Computer Science: 8859, 211-224 (2014). DOI:10.1007/978-3-319-12982-2_15 (URL: http://bit.ly/1DDdwdV)
 
