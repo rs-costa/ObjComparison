@@ -1,3 +1,11 @@
+% Exploring the cellular objective in flux balance constraint-based models.
+
+% Author: Rafael Costa
+% Affiliation: Instituto de Engenharia de Sistemas e Computadores, Investigacão e Desenvolvimento (INESC-ID), Lisboa
+% and
+% Center for Intelligent Systems, LAETA, IDMEC, IST, University of Lisbon 
+% Author: Nguyen Hoang Son
+
 %initCobraToolbox();
 %global exp_flux var_exp indices ite bmrate multiplier nRxns;
 clear;

@@ -1,3 +1,11 @@
+% Exploring the cellular objective in flux balance constraint-based models.
+
+% Author: Rafael Costa
+% Affiliation: Instituto de Engenharia de Sistemas e Computadores, Investigacão e Desenvolvimento (INESC-ID), Lisboa
+% and
+% Center for Intelligent Systems, LAETA, IDMEC, IST, University of Lisbon 
+% Author: Nguyen Hoang Son
+
 function growthmodel=constraint_growth(model,netcode,bmrate)
     %% set growth rate as biomass flux  
     if netcode==1
