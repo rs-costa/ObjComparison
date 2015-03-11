@@ -23,5 +23,5 @@ solution{5} = maxATPperFlux(glob,model,netcode);
 solution{6} = minRedox(glob,model,netcode,taskcode);
 solution{7} = minATPProd(glob,model,netcode,taskcode);
 solution{8}= maxATPProd(glob,model,netcode,taskcode);
-
+ 
 end
