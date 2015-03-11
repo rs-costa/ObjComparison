@@ -6,15 +6,15 @@ R S Costa, S Nguyen, A Hartman, S Vinga "<i>Exploring the cellular objective in 
 
 ObjComparison
 =============
-Systematic comparison of several objective functions for different E. coli models and datasets.
+Systematic comparison of several objective functions for different E. coli metabolic models and experimental datasets.
 
-I. PREQUISITES
+<b>I. PREQUISITES</b>
 
 -MATLAB 2012b with Global Optimization Toolbox and Parallel Computing.
 
 -Cobra toolbox 2.0.5 (GLPK+libSBML): http://opencobra.sourceforge.net/openCOBRA
  
-II. CONTENT
+<b>II. CONTENT</b>
 
 1) Scripts:
 
@@ -52,7 +52,7 @@ reconstruction models.
 -./supp/plots.docx: Microsoft word file containing all figures generated.
 
 
-REFERENCES
+<b>III. REFERENCES</b>
 
 [1] Jahn, J.: Vector Optimization: Theory, Applications, and Extensions (Springer, Heidelberg, Germany, 2004).
 
