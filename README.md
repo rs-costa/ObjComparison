@@ -6,7 +6,7 @@ R S Costa, S Nguyen, A Hartman, S Vinga "<i>Exploring the cellular objective in 
 
 ObjComparison
 =============
-Systematic comparison of several objective functions for different E. coli metabolic models and experimental datasets.
+Systematic comparison of several objective functions for different E. coli genome-scale models and experimental datasets.
 
 <b>I. PREQUISITES</b>
 
