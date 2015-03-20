@@ -6,7 +6,9 @@ R S Costa, S Nguyen, A Hartman, S Vinga "<i>Exploring the cellular objective in 
 
 ObjComparison
 =============
-Systematic comparison of several objective functions for different E. coli genome-scale models and experimental datasets.
+
+Matlab implementation for investigation the effect of cellular objective functions and constraints in flux balance constraint-based models. Implementation of all objective functions and constraints can be adapted to test different metabolic systems.
+
 
 <b>I. PREQUISITES</b>
 
