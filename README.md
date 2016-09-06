@@ -16,7 +16,7 @@ Matlab implementation for investigation the effect of cellular objective functio
 
 -Cobra toolbox 2.0.5 (GLPK+libSBML): http://opencobra.sourceforge.net/openCOBRA
  
-<b>II. CONTENT</b>
+<b>II. CONTENT/INSTRUCTIONS</b>
 
 1) Scripts:
 
